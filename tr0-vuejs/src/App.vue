@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { communicationManager } from './communicationManager';
+import EditPreguntes from './components/editPreguntes.vue';
 
 
 </script>
@@ -10,7 +11,7 @@ import { communicationManager } from './communicationManager';
     <h1>tr0-dam</h1>
   </header>
   <main>
-    <h1>asasdd</h1>
+    <EditPreguntes/>
   </main>
 </template>
 
@@ -21,7 +22,5 @@ import { communicationManager } from './communicationManager';
     padding: 10px;
     text-align: center;
   }
-  main {
-    padding: 20px;
-  }
+
 </style>
