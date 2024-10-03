@@ -2,13 +2,30 @@
 import { onMounted, reactive, ref } from 'vue'
 import { communicationManager } from '@/communicationManager';
 
-
-const preguntes = ref([]);
+import modalEditPreguntes from './modalEditPreguntes.vue';
 
 onMounted(async () => {
     preguntes.value = await communicationManager.getPreguntesAdmin();
-    console.log(preguntes.value);
 });
+
+
+const preguntes = ref([]);
+
+const modals = reactive({
+    editPregunta: {
+        show: false,
+        pregunta: null
+    }
+});
+
+function openModalEditPregunta(pregunta) {
+    modals.editPregunta.show = true;
+    modals.editPregunta.pregunta = pregunta;
+}
+function closeModalEditPregunta() {
+    modals.editPregunta.show = false;
+}
+
 </script>
 
 <template>
@@ -36,12 +53,14 @@ onMounted(async () => {
                     </div>
                 </div>
                 <div class="pregunta-actions">
-                    <button class="edit-button">Editar</button>
+                    <button @click="openModalEditPregunta(pregunta)" class="edit-button">Editar</button>
                     <button class="delete-button">Eliminar</button>
                 </div>
             </div>
-
         </div>
+
+        <modalEditPreguntes v-if="modals.editPregunta.show" :pregunta="modals.editPregunta.pregunta" @cancel="closeModalEditPregunta"/>
+
     </main>
 </template>
 

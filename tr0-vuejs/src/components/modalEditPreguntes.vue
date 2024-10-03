@@ -1,28 +1,148 @@
 <script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    props: {
+        pregunta: {
+            type: Object,
+            required: true,
+            default: () => ({
+                id: null,
+                pregunta: '',
+                respostes: [],
+                resposta_correcta: null,
+                imatge: ''
+            })
+        }
+    },
+    setup(props) {
+        return { ...props };
+    }
+});
 
 </script>
 
 <template>
     <div class="modal-edit-preguntes">
-        <h2>Editar Pregunta</h2>
-        <div>
-            <label for="texto">Texto de la pregunta:</label>
-            <input type="text" v-model="pregunta.texto" id="texto" />
-        </div>
-        <div>
-            <label for="respuestas">Respuestas:</label>
-            <div v-for="(respuesta, index) in pregunta.respuestas" :key="index">
-                <input type="text" v-model="pregunta.respuestas[index]" />
+        <div class="modal-content">
+            <h2>Editar Pregunta</h2>
+            <div class="form-group">
+                <label for="texto">Texto de la pregunta:</label>
+                <input type="text" v-model="pregunta.pregunta" id="texto" />
+            </div>
+            <div class="form-group">
+                <label for="respostes">Respostes:</label>
+                <div v-for="(respuesta, index) in pregunta.respostes" :key="index" class="respuesta-item">
+                    <input type="text" v-model="pregunta.respostes[index].etiqueta" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="respuesta_correcta">Respuesta Correcta:</label>
+                <select v-model="pregunta.resposta_correcta" id="respuesta_correcta">
+                    <option v-for="(respuesta, index) in pregunta.respostes" :key="index" :value="respuesta.id">
+                        {{ respuesta.etiqueta }}
+                    </option>
+                </select>
+            </div>
+            <div class="modal-btns-editPreg">
+                <button class="btn-save">Guardar</button>
+                <button class="btn-cancel" @click="this.$emit('cancel')">Cancelar</button>
             </div>
         </div>
-        <div>
-            <label for="respuesta_correcta">Respuesta Correcta:</label>
-            <input type="text" v-model="pregunta.respuesta_correcta" id="respuesta_correcta" />
-        </div>
-        <button @click="guardarPregunta">Guardar</button>
     </div>
 </template>
 
 <style scoped>
+.modal-edit-preguntes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: black;
+}
 
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.respuesta-item {
+    margin-bottom: 10px;
+}
+
+.modal-btns-editPreg {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.btn-save {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+.btn-save:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancel {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+.btn-cancel:hover {
+    background-color: #a71d2a;
+}
 </style>
