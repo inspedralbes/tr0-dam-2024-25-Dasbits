@@ -1,22 +1,17 @@
-<script>
-import { defineComponent } from 'vue';
+<script setup>
+import { ref } from 'vue';
 
-export default defineComponent({
-    props: {
-        pregunta: {
-            type: Object,
-            required: true,
-            default: () => ({
-                id: null,
-                pregunta: '',
-                respostes: [],
-                resposta_correcta: null,
-                imatge: ''
-            })
-        }
-    },
-    setup(props) {
-        return { ...props };
+const props = defineProps({
+    pregunta: {
+        type: Object,
+        required: true,
+        default: () => ({
+            id: null,
+            pregunta: '',
+            respostes: [],
+            resposta_correcta: null,
+            imatge: ''
+        })
     }
 });
 
@@ -27,26 +22,32 @@ export default defineComponent({
         <div class="modal-content">
             <h2>Editar Pregunta</h2>
             <div class="form-group">
+                <label for="imatge">Imatge:</label>
+                <input type="text" v-model="pregunta.imatge" />
+            </div>
+            <div class="form-group">
                 <label for="texto">Texto de la pregunta:</label>
-                <input type="text" v-model="pregunta.pregunta" id="texto" />
+                <input type="text" v-model="pregunta.pregunta"/>
             </div>
             <div class="form-group">
                 <label for="respostes">Respostes:</label>
-                <div v-for="(respuesta, index) in pregunta.respostes" :key="index" class="respuesta-item">
+                <div v-for="(respuesta, index) in pregunta.respostes" :key="index + 'editantResposta'"
+                    class="respuesta-item">
                     <input type="text" v-model="pregunta.respostes[index].etiqueta" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="respuesta_correcta">Respuesta Correcta:</label>
                 <select v-model="pregunta.resposta_correcta" id="respuesta_correcta">
-                    <option v-for="(respuesta, index) in pregunta.respostes" :key="index" :value="respuesta.id">
+                    <option v-for="(respuesta, index) in pregunta.respostes"
+                        :key="index + 'editantRespostaCorrecta'" :value="respuesta.id">
                         {{ respuesta.etiqueta }}
                     </option>
                 </select>
             </div>
             <div class="modal-btns-editPreg">
-                <button class="btn-save">Guardar</button>
-                <button class="btn-cancel" @click="this.$emit('cancel')">Cancelar</button>
+                <button class="btn-save" @click="$emit('save')">Guardar</button>
+                <button class="btn-cancel" @click="$emit('cancel')">Cancelar</button>
             </div>
         </div>
     </div>
@@ -126,6 +127,7 @@ h2 {
     cursor: pointer;
     text-align: center;
 }
+
 .btn-save:hover {
     background-color: #0056b3;
 }

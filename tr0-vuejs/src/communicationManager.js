@@ -270,8 +270,18 @@ async function getPreguntesAdmin() {
     return preguntes;
 }
 
+async function updatePregunta(pregunta) {
+    console.log('updatePregunta', pregunta);
+}
+
+async function deletePregunta(id) {
+    console.log('deletePregunta', id);
+}
+
 const communicationManager = {
-    getPreguntesAdmin
+    getPreguntesAdmin,
+    updatePregunta,
+    deletePregunta
 }
 
 export { communicationManager }
