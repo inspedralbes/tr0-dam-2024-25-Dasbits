@@ -9,6 +9,9 @@ import modalAfegirPregunta from './modals/modalAfegirPregunta.vue';
 const preguntes = ref([]);
 
 const modals = reactive({
+    addPregunta: {
+        show: false
+    },
     editPregunta: {
         show: false,
         pregunta: null
@@ -18,6 +21,24 @@ const modals = reactive({
         preguntaId: null
     }
 });
+
+function openModalAddPregunta() {
+    modals.addPregunta.show = true;
+}
+
+function closeModalAddPregunta() {
+    modals.addPregunta.show = false;
+}
+
+function saveNewPregunta(newPregunta) {
+    // guardar pregunta en el array
+    preguntes.value.push(newPregunta);
+
+    // guardar pregunta en el servidor
+    communicationManager.addPregunta(newPregunta);
+
+    closeModalAddPregunta();
+}
 
 function openModalEditPregunta(pregunta) {
     const preguntaCopy = JSON.parse(JSON.stringify(pregunta));
@@ -66,7 +87,7 @@ onMounted(async () => {
         <h1>Preguntes</h1>
         <div>
             <div class="pregunta-controls">
-                <button class="add-button">Afegir pregunta</button>
+                <button @click="openModalAddPregunta" class="add-button">Afegir pregunta</button>
 
                 <!-- buscador -->
                 <input type="text" placeholder="Buscar pregunta" class="search-input" />
@@ -97,6 +118,7 @@ onMounted(async () => {
 
         <modalEditPreguntes v-if="modals.editPregunta.show" :pregunta="modals.editPregunta.pregunta" @save="saveEditedPregunta" @cancel="closeModalEditPregunta"/>
         <modalConfirmacio v-if="modals.confirmacio.show" pregunta="Estas segur que vols eliminar la pregunta?" @confirm="deletePregunta" @cancel="closeModalConfirmacio"/>
+        <modalAfegirPregunta v-if="modals.addPregunta.show" @save="saveNewPregunta" @cancel="closeModalAddPregunta"/>
     </main>
 </template>
 

@@ -270,6 +270,10 @@ async function getPreguntesAdmin() {
     return preguntes;
 }
 
+async function addPregunta(pregunta) {
+    console.log('addPregunta', pregunta);
+}
+
 async function updatePregunta(pregunta) {
     console.log('updatePregunta', pregunta);
 }
@@ -280,6 +284,7 @@ async function deletePregunta(id) {
 
 const communicationManager = {
     getPreguntesAdmin,
+    addPregunta,
     updatePregunta,
     deletePregunta
 }
