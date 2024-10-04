@@ -2,8 +2,9 @@
 import { onMounted, reactive, ref } from 'vue'
 import { communicationManager } from '@/communicationManager';
 
-import modalEditPreguntes from './modalEditPreguntes.vue';
-import modalConfirmacio from './modalConfirmacio.vue';
+import modalEditPreguntes from './modals/modalEditPreguntes.vue';
+import modalConfirmacio from './modals/modalConfirmacio.vue';
+import modalAfegirPregunta from './modals/modalAfegirPregunta.vue';
 
 const preguntes = ref([]);
 
@@ -72,7 +73,7 @@ onMounted(async () => {
             </div>
             <div v-for="pregunta in preguntes" :key="'pregunta'+pregunta.id" class="pregunta-card">
                 <div>
-                    <img :src="pregunta.imatge" alt="imatge pregunta" />
+                    <!-- <img :src="pregunta.imatge" alt="imatge pregunta" /> -->
                 </div>
                 <div class="pregunta-header">
                     <h2>{{ pregunta.pregunta }}</h2>
@@ -95,9 +96,7 @@ onMounted(async () => {
         </div>
 
         <modalEditPreguntes v-if="modals.editPregunta.show" :pregunta="modals.editPregunta.pregunta" @save="saveEditedPregunta" @cancel="closeModalEditPregunta"/>
-        <h1>asc1</h1>
         <modalConfirmacio v-if="modals.confirmacio.show" pregunta="Estas segur que vols eliminar la pregunta?" @confirm="deletePregunta" @cancel="closeModalConfirmacio"/>
-        <h1>asc</h1>
     </main>
 </template>
 
