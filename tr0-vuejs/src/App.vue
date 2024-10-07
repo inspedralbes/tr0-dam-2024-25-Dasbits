@@ -17,10 +17,18 @@ import EditPreguntes from './components/editPreguntes.vue';
 
 <style scoped>
   header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #333;
     color: white;
     padding: 10px;
     text-align: center;
+    height: 10vh;
   }
-
+main{
+    background-color: #131313;
+    color: white;
+    height: 90vh;
+}
 </style>

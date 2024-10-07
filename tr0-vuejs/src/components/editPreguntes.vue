@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, computed, reactive, ref } from 'vue'
 import { communicationManager } from '@/communicationManager';
 
 import modalEditPreguntes from './modals/modalEditPreguntes.vue';
@@ -7,6 +7,7 @@ import modalConfirmacio from './modals/modalConfirmacio.vue';
 import modalAfegirPregunta from './modals/modalAfegirPregunta.vue';
 
 const preguntes = ref([]);
+const searchQuery = ref('');
 
 const modals = reactive({
     addPregunta: {
@@ -80,19 +81,32 @@ onMounted(async () => {
     preguntes.value = await communicationManager.getPreguntesAdmin();
 });
 
+// Computed para filtrar las preguntas basadas en el término de búsqueda
+const filteredPreguntes = computed(() => {
+  // Si el campo de búsqueda está vacío, devolvemos todas las preguntas
+  if (!searchQuery.value.trim()) {
+    return preguntes.value;
+  }
+
+  // Filtramos las preguntas si hay un término de búsqueda
+  return preguntes.value.filter(pregunta =>
+    pregunta.pregunta.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
+
 </script>
 
 <template>
-    <main>
+    <div class="llistat-preg">
         <h1>Preguntes</h1>
         <div>
             <div class="pregunta-controls">
                 <button @click="openModalAddPregunta" class="add-button">Afegir pregunta</button>
 
                 <!-- buscador -->
-                <input type="text" placeholder="Buscar pregunta" class="search-input" />
+                <input type="text" v-model="searchQuery" placeholder="Buscar pregunta" class="search-input" />
             </div>
-            <div v-for="pregunta in preguntes" :key="'pregunta'+pregunta.id" class="pregunta-card">
+            <div v-for="pregunta in filteredPreguntes" :key="'pregunta'+pregunta.id" class="pregunta-card">
                 <div>
                     <!-- <img :src="pregunta.imatge" alt="imatge pregunta" /> -->
                 </div>
@@ -119,15 +133,16 @@ onMounted(async () => {
         <modalEditPreguntes v-if="modals.editPregunta.show" :pregunta="modals.editPregunta.pregunta" @save="saveEditedPregunta" @cancel="closeModalEditPregunta"/>
         <modalConfirmacio v-if="modals.confirmacio.show" pregunta="Estas segur que vols eliminar la pregunta?" @confirm="deletePregunta" @cancel="closeModalConfirmacio"/>
         <modalAfegirPregunta v-if="modals.addPregunta.show" @save="saveNewPregunta" @cancel="closeModalAddPregunta"/>
-    </main>
+    </div>
 </template>
 
 <style scoped>
-main {
+.llistat-preg {
+    margin-left: 50px;
+    margin-right: 50px;
     padding: 50px;
     background-color: #131313;
     color: white;
-    
 }
 h1 {
     text-align: center;
