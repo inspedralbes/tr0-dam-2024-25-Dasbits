@@ -29,6 +29,6 @@ import EditPreguntes from './components/editPreguntes.vue';
 main{
     background-color: #131313;
     color: white;
-    height: 90vh;
+    min-height: 90vh;
 }
 </style>
