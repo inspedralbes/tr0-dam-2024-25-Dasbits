@@ -8,7 +8,7 @@ import EditPreguntes from './components/editPreguntes.vue';
 
 <template>
   <header>
-    <h1>tr0-dam</h1>
+    <h1>TR0-2nDAM - David Salvador</h1>
   </header>
   <main>
     <EditPreguntes/>
