@@ -35,8 +35,6 @@ function updateData(data) {
         // Escribir el archivo modificado de manera síncrona
         fs.writeFileSync(filePath, jsonString, 'utf8');
 
-        console.log('Archivo JSON actualizado correctamente');
-
     } catch (err) {
         console.error('Error manejando el archivo JSON:', err);
     }
