@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 
 const newPregunta = ref({
+    id: null,
     pregunta: '',
     respostes: [
         { etiqueta: '', id: 1 },

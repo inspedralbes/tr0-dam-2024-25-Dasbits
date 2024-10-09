@@ -6,6 +6,7 @@ import modalEditPreguntes from './modals/modalEditPreguntes.vue';
 import modalConfirmacio from './modals/modalConfirmacio.vue';
 import modalAfegirPregunta from './modals/modalAfegirPregunta.vue';
 
+const data = ref(null);
 const preguntes = ref([]);
 const searchQuery = ref('');
 
@@ -31,14 +32,17 @@ function closeModalAddPregunta() {
     modals.addPregunta.show = false;
 }
 
-function saveNewPregunta(newPregunta) {
-    // guardar pregunta en el array
-    preguntes.value.push(newPregunta);
-
-    // guardar pregunta en el servidor
-    communicationManager.addPregunta(newPregunta);
-
+async function saveNewPregunta(newPregunta) {
+    preguntes.value = await communicationManager.addPregunta(newPregunta);
     closeModalAddPregunta();
+}
+async function saveEditedPregunta() {
+    preguntes.value = await communicationManager.updatePregunta(modals.editPregunta.pregunta);
+    closeModalEditPregunta();
+}
+async function deletePregunta() {
+    preguntes.value = await communicationManager.deletePregunta(modals.confirmacio.preguntaId);
+    closeModalConfirmacio();
 }
 
 function openModalEditPregunta(pregunta) {
@@ -49,32 +53,12 @@ function openModalEditPregunta(pregunta) {
 function closeModalEditPregunta() {
     modals.editPregunta.show = false;
 }
-function saveEditedPregunta() {
-    // guardar pregunta editada en el array
-    const index = preguntes.value.findIndex(p => p.id === modals.editPregunta.pregunta.id);
-    preguntes.value[index] = modals.editPregunta.pregunta;
-
-    // guardar update de pregunta en el servidor
-    communicationManager.updatePregunta(modals.editPregunta.pregunta);
-    
-    closeModalEditPregunta();
-}
-
 function openModalConfirmacio(preguntaId) {
     modals.confirmacio.show = true;
     modals.confirmacio.preguntaId = preguntaId;
 }
 function closeModalConfirmacio() {
     modals.confirmacio.show = false;
-}
-function deletePregunta() {
-    // eliminar pregunta del array
-    preguntes.value = preguntes.value.filter(p => p.id !== modals.confirmacio.preguntaId);
-
-    // eliminar pregunta del servidor
-    communicationManager.deletePregunta(modals.confirmacio.preguntaId);
-
-    closeModalConfirmacio();
 }
 
 onMounted(async () => {

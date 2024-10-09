@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const fs = require('fs');
 const filePath = 'data.json';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const PORT = 3000;
 
@@ -60,8 +62,14 @@ app.get('/pregunta/:id', (req, res) => {
 app.post('/pregunta', (req, res) => {
     const data = readData();
     const pregunta = req.body;
+
+    //Asignar un id a la pregunta
+    const lastId = data.preguntes.reduce((max, p) => p.id > max ? p.id : max, 0);
+    pregunta.id = lastId + 1;
+
     data.preguntes.push(pregunta);
     updateData(data);
+
     res.json(data);
 });
 
