@@ -1,7 +1,7 @@
 const urlServer = "http://localhost:3000";
 
 async function getPreguntesAdmin() {
-    const data = await fetch(urlServer + '/preguntes');
+    const data = await fetch(urlServer + '/preguntesAdmin');
     const dataPreguntes = await data.json();
     return dataPreguntes.preguntes;
 }

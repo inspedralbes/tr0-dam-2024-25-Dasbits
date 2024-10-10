@@ -43,9 +43,21 @@ function updateData(data) {
 
 
 // GET PREUNTES
-app.get('/preguntes', (req, res) => {
+app.get('/preguntesAdmin', (req, res) => {
     const data = readData();
     res.json(data);
+});
+
+// GET PREGUNTES PARA EL JUEGO
+app.get('/preguntes', (req, res) => {
+    const data = readData();
+
+    // quitamos la respuesta correcta
+    data.preguntes.forEach(p => {
+        delete p.resposta_correcta;
+    });
+
+    res.json(data.preguntes);
 });
 
 //GET PREGRUNTA BY ID
