@@ -111,6 +111,33 @@ app.delete('/pregunta/:id', (req, res) => {
     res.json(data);
 });
 
+// GET RESPUESTAS
+app.post('/respostes', (req, res) => {
+    const data = readData();
+    const userName = req.body.userName;
+    const respostes = req.body.answers;
+
+    var dataPuntacions = {
+        "questionsInfo": []
+    }
+
+    // Calcular puntuación
+    respostes.forEach(respuesta => {
+        var questionInfo= {
+            "questionId": respuesta.questionId,
+            "correcta": false
+        }
+        pregunta = data.preguntes.find(p => p.id === respuesta.questionId);
+        if (pregunta.resposta_correcta === respuesta.selectedAnswer) {
+            questionInfo.correcta = true;
+        }
+        dataPuntacions.questionsInfo.push(questionInfo);
+        
+    });
+
+    res.json(dataPuntacions);
+});
+
 
 app.get('/', (req, res) => {
     res.send('¡Hola Mundo desde Express!');
