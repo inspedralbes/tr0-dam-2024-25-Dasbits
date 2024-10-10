@@ -52,6 +52,9 @@ app.get('/preguntesAdmin', (req, res) => {
 app.get('/preguntes', (req, res) => {
     const data = readData();
 
+    // seleccionamos 10 preguntas aleatorias
+    data.preguntes = data.preguntes.sort(() => 0.5 - Math.random()).slice(0, 10);
+
     // quitamos la respuesta correcta
     data.preguntes.forEach(p => {
         delete p.resposta_correcta;
