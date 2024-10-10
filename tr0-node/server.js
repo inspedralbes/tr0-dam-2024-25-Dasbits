@@ -60,7 +60,7 @@ app.get('/preguntes', (req, res) => {
         delete p.resposta_correcta;
     });
 
-    res.json(data.preguntes);
+    res.json(data);
 });
 
 //GET PREGRUNTA BY ID
