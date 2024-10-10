@@ -22,7 +22,7 @@
                 }
             ],
             "resposta_correcta": 1,
-            "imatge": "https://exemple.com/bmw.jpg"
+            "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn0SoX4dW_Ui5ZlinucFio9Qivsl-a31eDvA&s"
         },
         {
             "id": 2,
@@ -46,7 +46,7 @@
                 }
             ],
             "resposta_correcta": 1,
-            "imatge": "https://exemple.com/zona_escolar.jpg"
+            "imatge": "https://www.zoilorios.com/sites/default/files/limite-velocidad-90.jpg"
         },
         {
             "id": 3,
@@ -70,7 +70,7 @@
                 }
             ],
             "resposta_correcta": 2,
-            "imatge": "https://exemple.com/perill.jpg"
+            "imatge": "https://ca.lcaf-worlds.com/uploads/36115/news/p2024030615093513605.jpeg?size=600x0"
         },
         {
             "id": 4,
@@ -94,7 +94,7 @@
                 }
             ],
             "resposta_correcta": 3,
-            "imatge": "https://exemple.com/distancia.jpg"
+            "imatge": "https://dudasleyes.s3.eu-west-3.amazonaws.com/wp-content/uploads/2017/06/24163120/distancia-de-seguridad.png.webp"
         },
         {
             "id": 5,
@@ -118,7 +118,7 @@
                 }
             ],
             "resposta_correcta": 2,
-            "imatge": "https://exemple.com/prohibit.jpg"
+            "imatge": "https://www.carteling.com/6939-large_default/prohibit-aparcar-pictograma-10-uts.jpg"
         },
         {
             "id": 6,
@@ -142,7 +142,7 @@
                 }
             ],
             "resposta_correcta": 1,
-            "imatge": "https://exemple.com/girar_dreta.jpg"
+            "imatge": "https://thumbs.dreamstime.com/b/se%C3%B1al-de-tr%C3%A1fico-azul-con-la-flecha-blanca-derecha-al-ejemplo-correcto-141887183.jpg"
         },
         {
             "id": 7,
@@ -166,7 +166,7 @@
                 }
             ],
             "resposta_correcta": 3,
-            "imatge": "https://exemple.com/autopista.jpg"
+            "imatge": "https://es.e-noticies.cat/filesedc/uploads/image/post/montaje-de-fotos-de-una-carretera-con-trafico-y-una-senal-a-150_1200_800.webp"
         },
         {
             "id": 8,
@@ -190,7 +190,7 @@
                 }
             ],
             "resposta_correcta": 1,
-            "imatge": "https://exemple.com/limit_velocitat.jpg"
+            "imatge": "https://fotografias.lasexta.com/clipping/cmsimages02/2023/06/09/A659CA02-0E6E-47AF-AF98-F0EF1CD5FB25/senal-301_default.jpg"
         },
         {
             "id": 9,
@@ -214,7 +214,7 @@
                 }
             ],
             "resposta_correcta": 3,
-            "imatge": "https://exemple.com/prioritat.jpg"
+            "imatge": "https://www.comercturro.com/tiendaonline/documentos/productos/senal-peligro-circulacion-en-los-dos-sentidos-p25.jpg"
         },
         {
             "id": 10,
@@ -238,7 +238,7 @@
                 }
             ],
             "resposta_correcta": 3,
-            "imatge": "https://exemple.com/direccio_recta.jpg"
+            "imatge": "https://previews.123rf.com/images/tratong/tratong1210/tratong121000241/15796668-flecha-blanca-en-se%C3%B1al-de-tr%C3%A1fico-azul-sobre-fondo-blanco.jpg"
         },
         {
             "id": 11,
@@ -262,7 +262,7 @@
                 }
             ],
             "resposta_correcta": 1,
-            "imatge": "https://exemple.com/prohibit_bicicletes.jpg"
+            "imatge": "https://syssa.com/40942-large_default/prohibit-passar-bicicletes.jpg"
         }
     ]
 }

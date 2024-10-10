@@ -92,7 +92,7 @@ const filteredPreguntes = computed(() => {
             </div>
             <div v-for="pregunta in filteredPreguntes" :key="'pregunta'+pregunta.id" class="pregunta-card">
                 <div>
-                    <img :src="pregunta.imatge" alt="imatge pregunta" />
+                    <img :src="pregunta.imatge" alt="imatge pregunta" style="max-width: 100%; max-height: 200px;" />
                     <h2>{{ pregunta.imatge }}</h2>
                 </div>
                 <div class="pregunta-header">
