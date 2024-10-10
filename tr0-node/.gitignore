@@ -1,0 +1,23 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+
+# Logs
+logs
+*.log
+logs/*
+
+# Directorios de depuración
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Coverage y testing
+coverage/
+
+# Entornos y configuraciones del sistema operativo
+*.local
+*.env.local
