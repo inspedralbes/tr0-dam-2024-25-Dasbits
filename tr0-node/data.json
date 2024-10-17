@@ -49,30 +49,6 @@
       "imatge": "https://www.zoilorios.com/sites/default/files/limite-velocidad-90.jpg"
     },
     {
-      "id": 3,
-      "pregunta": "Què significa un senyal de trànsit amb un triangle vermell i un signe d'exclamació?",
-      "respostes": [
-        {
-          "id": 1,
-          "etiqueta": "Prohibit estacionar"
-        },
-        {
-          "id": 2,
-          "etiqueta": "Perill"
-        },
-        {
-          "id": 3,
-          "etiqueta": "Stop"
-        },
-        {
-          "id": 4,
-          "etiqueta": "Cediu el pas"
-        }
-      ],
-      "resposta_correcta": 2,
-      "imatge": "https://ca.lcaf-worlds.com/uploads/36115/news/p2024030615093513605.jpeg?size=600x0"
-    },
-    {
       "id": 4,
       "pregunta": "Quina és la distància mínima de seguretat entre vehicles en una carretera?",
       "respostes": [
